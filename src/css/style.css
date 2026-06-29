@@ -1,0 +1,164 @@
+:root {
+  --bg: #F7F1E8;
+  --panel: #FFFAE8;
+  --panel-soft: rgba(255, 250, 232, 0.88);
+
+  --text: #2F3C5A;
+  --text-muted: #607A99;
+  --text-invert: #FFFFFF;
+
+  --primary: #7BB7D9;
+  --primary-deep: #0679B9;
+  --secondary: #E76F51;
+  --accent: #F4D35E;
+  --success: #7BC67E;
+
+  --line: #607A99;
+  --line-soft: rgba(96, 122, 153, 0.55);
+
+  --shadow-soft: 0 6px 16px rgba(0, 0, 0, 0.18);
+  --shadow-lift: 0 10px 24px rgba(0, 0, 0, 0.22);
+
+  --border-soft: rgba(255, 255, 255, 0.18);
+  --border-strong: rgba(47, 60, 90, 0.16);
+}
+
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    touch-action: none;
+    background: lightcyan;
+    /* color: white; */
+    font-family: system-ui, sans-serif;
+}
+
+#app {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    border: 2px solid blue;
+}
+
+#gameCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 2px solid purple;
+}
+
+#ui {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  z-index: 10;
+  pointer-events: none;
+  border: 2px solid green;
+}
+
+#joystickContainer {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  z-index: 10;
+  border: 2px solid red;
+}
+
+#levelTitle {
+  /* font-weight: 700; */
+  color: var(--text);
+  background: var(--panel-soft);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-soft);
+  padding: 0.75rem;
+  border-radius: 0.8rem;
+  display: inline-block;
+  /* box-shadow: 0 4px 12px lightgrey; */
+  margin-bottom: 0.5rem;
+}
+
+#storyText {
+  max-width: min(92vw, 32rem);
+  color: var(--text);
+  background: var(--panel-soft);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-soft);
+  padding: 0.75rem;
+  border-radius: 0.6rem;
+  /* box-shadow: 0 6px 16px lightgrey; */
+  margin-bottom: 0.6rem;
+}
+
+#statusText {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  min-height: 1.2em;
+  margin-top: 0.35rem;
+}
+
+#progressBar {
+  width: min(92vw, 22rem);
+  height: 1rem;
+  background: lightgoldenrodyellow;
+  border-radius: 99px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 4px lightgrey;
+  margin-top: 0.4rem;
+}
+
+#progressFill {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--success), var(--accent));
+  transition: width 120ms linear;
+}
+
+#joystickBase {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.11);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-lift);
+  backdrop-filter: blur(6px);
+  position: relative;
+  touch-action: none;
+}
+
+#joystickKnob {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 30% 30%, white, var(--primary) 55%, var(--primary-deep) 100%);
+  box-shadow:
+    0 6px 14px rgba(0, 0, 0, 0.28),
+    inset 0 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 600px) {
+  #joystickBase {
+    width: 104px;
+    height: 104px;
+  }
+
+  #joystickKnob {
+    width: 46px;
+    height: 46px;
+  }
+
+  #storyText {
+    max-width: 94vw;
+  }
+
+  #progressBar {
+    width: 94vw;
+  }
+}
