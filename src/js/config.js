@@ -1,5 +1,5 @@
 export const CONFIG = {
-  playerRadius: 20,
+  playerRadius: 15,
   proximityThreshold: 100,
   drawingPointRadius: 4,
   trailMaxPoints: 1000,
