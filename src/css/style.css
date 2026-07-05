@@ -1,14 +1,14 @@
 :root {
   --bg: #F7F1E8;
-  --panel: #FFFAE8;
-  --panel-soft: rgba(255, 250, 232, 0.88);
+  --panel: plum;
+  --panel-soft: plum;
 
   --text: #2F3C5A;
   --text-muted: #607A99;
   --text-invert: #FFFFFF;
 
-  --primary: #7BB7D9;
-  --primary-deep: #0679B9;
+  --primary: lightblue;
+  --primary-deep: blue;
   --secondary: #E76F51;
   --accent: #F4D35E;
   --success: #7BC67E;
@@ -23,14 +23,13 @@
   --border-strong: rgba(47, 60, 90, 0.16);
 }
 
-
 html, body {
     margin: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
     touch-action: none;
-    background: lightcyan;
+    background: var(--bg);
     /* color: white; */
     font-family: system-ui, sans-serif;
 }
@@ -39,14 +38,14 @@ html, body {
     position: relative;
     width: 100vw;
     height: 100vh;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
 }
 
 #gameCanvas {
   display: block;
   width: 100%;
   height: 100%;
-  border: 2px solid purple;
+  /* border: 2px solid purple; */
 }
 
 #ui {
@@ -56,15 +55,7 @@ html, body {
   right: 12px;
   z-index: 10;
   pointer-events: none;
-  border: 2px solid green;
-}
-
-#joystickContainer {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  z-index: 10;
-  border: 2px solid red;
+  /* border: 2px solid green; */
 }
 
 #levelTitle {
@@ -83,7 +74,7 @@ html, body {
 #storyText {
   max-width: min(92vw, 32rem);
   color: var(--text);
-  background: var(--panel-soft);
+  background: var(--primary);
   border: 1px solid var(--border-strong);
   box-shadow: var(--shadow-soft);
   padding: 0.75rem;
@@ -117,11 +108,19 @@ html, body {
   transition: width 120ms linear;
 }
 
+#joystickContainer {
+  position: absolute;
+  bottom: 17%;
+  right: 17%;
+  z-index: 10;
+  /* border: 2px solid red; */
+}
+
 #joystickBase {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.11);
+  background: rgba(255, 255, 255, 0.14);
   border: 1px solid var(--border-soft);
   box-shadow: var(--shadow-lift);
   backdrop-filter: blur(6px);
