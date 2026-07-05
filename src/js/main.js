@@ -1,19 +1,12 @@
 import { Player } from './Player.js';
-import { CONFIG } from './config.js';
 import { Joystick } from './Joystick.js';
+import { CONFIG } from './config.js';
 
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
-const joystick = new Joystick(
-  document.getElementById('joystickBase'),
-  document.getElementById('joystickKnob'),
-  (input) => {
-    player.vx = input.x * player.speed;
-    player.vy = input.y * player.speed;
-  }
-);
 
 let player;
+let joystick;
 
 function resizeCanvas() {
   const dpr = window.devicePixelRatio || 1;
@@ -30,11 +23,28 @@ function resizeCanvas() {
 
   if (!player) {
     player = new Player(width / 2, height / 2, CONFIG.playerRadius || 15);
+  } else {
+    // Keep player inside the new bounds
+    player.x = Math.min(Math.max(player.x, player.radius), width - player.radius);
+    player.y = Math.min(Math.max(player.y, player.radius), height - player.radius);
+  }
+}
+
+function setupJoystick() {
+  const baseEl = document.getElementById('joystickBase');
+  const knobEl = document.getElementById('joystickKnob');
+
+  if (!baseEl || !knobEl) {
+    console.warn('Joystick elements not found');
     return;
   }
 
-  player.x = Math.min(Math.max(player.x, player.radius), width - player.radius);
-  player.y = Math.min(Math.max(player.y, player.radius), height - player.radius);
+  joystick = new Joystick(baseEl, knobEl, (input) => {
+    // input.x and input.y are normalized in [-1, 1]
+    if (!player) return;
+    player.vx = input.x * player.speed;
+    player.vy = input.y * player.speed;
+  });
 }
 
 function loop() {
@@ -53,4 +63,5 @@ function loop() {
 
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
+setupJoystick();
 requestAnimationFrame(loop);
