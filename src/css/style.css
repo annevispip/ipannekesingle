@@ -21,6 +21,22 @@
 
   --border-soft: rgba(255, 255, 255, 0.18);
   --border-strong: rgba(47, 60, 90, 0.16);
+
+  --font-heading: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  --font-body: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --fs-title: clamp(1.05rem, 0.9rem + 0.8vw, 1.5rem);
+  --fs-story: clamp(0.98rem, 0.88rem + 0.45vw, 1.15rem);
+  --fs-status: clamp(0.8rem, 0.76rem + 0.22vw, 0.92rem);
+  --fs-ui-label: clamp(0.78rem, 0.74rem + 0.2vw, 0.9rem);
+
+  --lh-title: 1.15;
+  --lh-story: 1.5;
+  --lh-status: 1.25;
+
+  --tracking-title: 0.02em;
+  --tracking-ui: 0.01em;
 }
 
 html, body {
@@ -64,6 +80,11 @@ html, body {
   background: var(--panel-soft);
   border: 1px solid var(--border-strong);
   box-shadow: var(--shadow-soft);
+  font-family: var(--font-heading);
+  font-size: var(--fs-title);
+  line-height: var(--lh-title);
+  letter-spacing: var(--tracking-title);
+  font-weight: 700;
   padding: 0.75rem;
   border-radius: 0.8rem;
   display: inline-block;
@@ -77,6 +98,10 @@ html, body {
   background: var(--primary);
   border: 1px solid var(--border-strong);
   box-shadow: var(--shadow-soft);
+  font-family: var(--font-body);
+  font-size: var(--fs-story);
+  line-height: var(--lh-story);
+  font-weight: 400;
   padding: 0.75rem;
   border-radius: 0.6rem;
   /* box-shadow: 0 6px 16px lightgrey; */
@@ -85,7 +110,11 @@ html, body {
 
 #statusText {
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-family: var(--font-ui);
+  font-size: var(--fs-status);
+  line-height: var(--lh-status);
+  letter-spacing: var(--tracking-ui);
+  font-weight: 500;
   min-height: 1.2em;
   margin-top: 0.35rem;
 }
@@ -143,6 +172,12 @@ html, body {
 }
 
 @media (max-width: 600px) {
+  :root {
+    --fs-title: clamp(1rem, 0.9rem + 1vw, 1.3rem);
+    --fs-story: clamp(0.95rem, 0.85rem + 0.5vw, 1.05rem);
+    --fs-status: clamp(0.78rem, 0.74rem + 0.22vw, 0.9rem);
+  }
+
   #joystickBase {
     width: 104px;
     height: 104px;
