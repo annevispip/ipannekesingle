@@ -27,7 +27,7 @@ export class Joystick {
       if (e.pointerId !== this.pointerId) return;
       this.active = false;
       this.pointerId = null;
-      this.knobEl.style.transform = 'translate(0px, 0px)';
+      this.knobEl.style.transform = 'translate(-50%, -50%)';
       this.onMove({ x: 0, y: 0 });
     };
 
@@ -49,8 +49,9 @@ export class Joystick {
       dy = (dy / dist) * this.maxRadius;
     }
 
-    this.knobEl.style.transform = `translate(${dx}px, ${dy}px)`;
+    this.knobEl.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
 
+    // Normalized input from -1 to 1
     this.onMove({
       x: dx / this.maxRadius,
       y: dy / this.maxRadius
