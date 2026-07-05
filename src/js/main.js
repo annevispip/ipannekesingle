@@ -29,19 +29,24 @@ function resizeCanvas() {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
   if (!player) {
-    player = new Player(width / 2, height / 2, CONFIG.playerRadius);
+    player = new Player(width / 2, height / 2, CONFIG.playerRadius || 15);
     return;
   }
 
-  player.x = Math.min(player.x, width - player.radius);
-  player.y = Math.min(player.y, height - player.radius);
+  player.x = Math.min(Math.max(player.x, player.radius), width - player.radius);
+  player.y = Math.min(Math.max(player.y, player.radius), height - player.radius);
 }
 
 function loop() {
-  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  const width = window.innerWidth;
+  const height = window.innerHeight;
 
-  player.update(window.innerWidth, window.innerHeight);
-  player.render(ctx);
+  ctx.clearRect(0, 0, width, height);
+
+  if (player) {
+    player.update(width, height);
+    player.render(ctx);
+  }
 
   requestAnimationFrame(loop);
 }
