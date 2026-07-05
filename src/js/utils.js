@@ -1,7 +1,9 @@
+// Distance between two points { x, y }
 export function getDistance(a, b) {
   return Math.hypot(a.x - b.x, a.y - b.y);
 }
 
+// Midpoint between two points { x, y }
 export function getMidPoint(a, b) {
   return {
     x: (a.x + b.x) / 2,
@@ -9,11 +11,13 @@ export function getMidPoint(a, b) {
   };
 }
 
+// Random HSL color for connection trails
 export function randomColor() {
   const hue = Math.floor(Math.random() * 360);
   return `hsl(${hue}, 70%, 50%)`;
 }
 
+// Clamp value between min and max
 export function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
