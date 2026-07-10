@@ -8,6 +8,13 @@ const ctx = canvas.getContext('2d');
 let player;
 let joystick;
 
+function setStatus(message) {
+  const statusEl = document.getElementById('statusText');
+  if (statusEl) {
+    statusEl.textContent = message;
+  }
+}
+
 function resizeCanvas() {
   const dpr = window.devicePixelRatio || 1;
   const width = window.innerWidth;
@@ -44,6 +51,9 @@ function setupJoystick() {
     if (!player) return;
     player.vx = input.x * player.speed;
     player.vy = input.y * player.speed;
+    
+    const isMoving = Math.abs(input.x) > 0.1 || Math.abs(input.y) > 0.1;
+    setStatus(isMoving ? 'Go!' : 'Ready? Set...');
   });
 }
 
@@ -64,4 +74,5 @@ function loop() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 setupJoystick();
+setStatus('Game ready!');
 requestAnimationFrame(loop);
