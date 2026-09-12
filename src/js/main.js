@@ -7,9 +7,9 @@ const ctx = canvas.getContext('2d');
 
 let player;
 let joystick;
+const statusEl = document.getElementById('statusText');
 
 function setStatus(message) {
-  const statusEl = document.getElementById('statusText');
   if (statusEl) {
     statusEl.textContent = message;
   }
@@ -19,6 +19,7 @@ function resizeCanvas() {
   const dpr = window.devicePixelRatio || 1;
   const width = window.innerWidth;
   const height = window.innerHeight;
+  const statusEl = document.getElementById('statusText');
 
   canvas.style.width = `${width}px`;
   canvas.style.height = `${height}px`;
@@ -35,6 +36,8 @@ function resizeCanvas() {
     player.x = Math.min(Math.max(player.x, player.radius), width - player.radius);
     player.y = Math.min(Math.max(player.y, player.radius), height - player.radius);
   }
+
+  setStatus('Game ready! Ready? Set...');
 }
 
 function setupJoystick() {
